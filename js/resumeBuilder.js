@@ -184,9 +184,14 @@ bio.display=function(){
  	$("#header").append(formattedRole);
  	var emailTop = HTMLcontactGeneric.replace("%contact%","email").replace("%data%",bio.contacts.email);
  	var mobTop = HTMLcontactGeneric.replace("%contact%","Mob").replace("%data%",bio.contacts.mobile);
- 	$("#topContacts:last").append(emailTop);
- 	$("#topContacts:last").append(mobTop);
-	
+ 	$("#topContacts").append(HTMLmobile.replace("%data%",bio.contacts.mobile));
+ 	$("#topContacts").append(HTMLemail.replace("%data%",bio.contacts.email));
+ 	$("#topContacts").append(HTMLlocation.replace("%data%",bio.contacts.location));
+
+	$("#footerContacts").append(emailTop);
+	$("#footerContacts").append(mobTop);
+	$("#footerContacts").append(HTMLgithub.replace("%data%",bio.contacts.github));
+
 	$("#header").append(HTMLbioPic.replace("%data%",bio.picture));
 	$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcome));
 	//$("#header").append(HTMLmobile.replace("%data%",bio.contacts.mobile));
