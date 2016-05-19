@@ -107,13 +107,13 @@ var education =  {
  	"projects": [{
  		"title":"Format String",
  		"dates":"2016 Spring",
- 		"images":["C:/Users/sphinx/Downloads/1.jpg","C:/Users/sphinx/Downloads/2.jpg"],
+ 		"images":["file:///C:/Users/sphinx/Downloads/1.jpg","file:///C:/Users/sphinx/Downloads/2.jpg"],
  		"description":["C","objdump","gdb"]
  	},
  	{
  		"title":"Travel Guide",
  		"dates":"2015 Fall",
- 		"images":["C:/Users/sphinx/Downloads/3.jpg","C:/Users/sphinx/Downloads/4.png"],
+ 		"images":["file:///C:/Users/sphinx/Downloads/3.jpg","file:///C:/Users/sphinx/Downloads/4.png"],
  		"description":["Java",".NET","XML"]
  	}
  	]
@@ -182,20 +182,23 @@ bio.display=function(){
  	var formattedName = HTMLheaderName.replace("%data%",bio.name);
  	$("#header").append(formattedName);
  	$("#header").append(formattedRole);
- 	$("#topContacts").append(HTMLcontactGeneric.replace("%contact%",bio.contacts.email));
- 	if(bio.hasOwnProperty('skills')){
-		$("#header").append(HTMLskillsStart);
-		for(var i=0;i<bio.skills.length;i++){
-			$("#skills").append(HTMLskills.replace("%data%",skills[i]));
-		}
-	}
+ 	var emailTop = HTMLcontactGeneric.replace("%contact%","email").replace("%data%",bio.contacts.email);
+ 	var mobTop = HTMLcontactGeneric.replace("%contact%","Mob").replace("%data%",bio.contacts.mobile);
+ 	$("#topContacts:last").append(emailTop);
+ 	$("#topContacts:last").append(mobTop);
 	
 	$("#header").append(HTMLbioPic.replace("%data%",bio.picture));
 	$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcome));
-	$("#header").append(HTMLmobile.replace("%data%",bio.contacts.mobile));
-	$("#header").append(HTMLemail.replace("%data%",bio.contacts.email));
-	$("#header").append(HTMLgithub.replace("%data%",bio.contacts.github));
-	$("#header").append(HTMLlocation.replace("%data%",bio.location));
+	//$("#header").append(HTMLmobile.replace("%data%",bio.contacts.mobile));
+	//$("#header").append(HTMLemail.replace("%data%",bio.contacts.email));
+	//$("#header").append(HTMLgithub.replace("%data%",bio.contacts.github));
+	//$("#header").append(HTMLlocation.replace("%data%",bio.contacts.location));
+	if(bio.hasOwnProperty('skills')){
+		$("#header").append(HTMLskillsStart);
+		for(var i=0;i<bio.skills.length;i++){
+			$("#skills").append(HTMLskills.replace("%data%",bio.skills[i]));
+		}
+	}
 }
 bio.display();
 $("#mapDiv").append(googleMap);
